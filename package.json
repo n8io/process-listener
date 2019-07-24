@@ -1,0 +1,21 @@
+{
+  "name": "process-listener",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": "^10"
+  },
+  "dependencies": {
+    "commander": "^2.20.0",
+    "pkg": "^4.4.0",
+    "psaux": "^0.4.0",
+    "ramda": "^0.26.1",
+    "shelljs": "^0.8.3"
+  },
+  "scripts": {
+    "readme": "yarn -s build && process-listener --help",
+    "build": "pkg ./index.js -t node10-macos-x64 -o /usr/local/bin/process-listener",
+    "clean": "rm -rf /usr/local/bin/process-listener"
+  }
+}
