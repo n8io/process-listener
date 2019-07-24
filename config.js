@@ -1,10 +1,12 @@
 const commander = require("commander");
+const { name } = require("./package.json");
 
 const args = new commander.Command();
 
 const float = val => parseFloat(val, 10);
 
 args
+  .name(name)
   .version("1.0.0")
   .option(
     "-c --min-cpu <minCpu>",
