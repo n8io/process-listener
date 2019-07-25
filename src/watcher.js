@@ -1,21 +1,11 @@
 const { multiply } = require("ramda");
 const psaux = require("psaux");
 const shell = require("shelljs");
-const config = require("./config");
-const { logFactory } = require("./log");
+const { config } = require("./config");
+const { log } = require("./log");
 const { Status } = require("./status");
 
-const {
-  COMMAND_END,
-  COMMAND_START,
-  MIN_CPU,
-  PID,
-  PRINT_OUTPUT,
-  PROCESS_NAME,
-  USER,
-} = config;
-
-const log = logFactory(PRINT_OUTPUT);
+const { COMMAND_END, COMMAND_START, MIN_CPU, PID, PROCESS_NAME, USER } = config;
 
 log(
   `\n${JSON.stringify(

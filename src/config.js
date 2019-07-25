@@ -13,13 +13,13 @@ args
     "The minimum cpu % to consider the process active. E.g. 10.5 / Defaults to 0",
     float
   )
-  .option("-v --verbose", "Verbose logging")
   .option('-e --on-end <echo "Ending!">', "Execute this command on process end")
   .option("-p --process-name <processName>", "The process to watch")
   .option(
     '-s --on-start <echo "Starting!">',
     "Execute this command on process start"
   )
+  .option("-v --verbose", "Verbose logging")
   .parse(process.argv);
 
 const { USER } = process.env;
@@ -29,7 +29,7 @@ const {
   onEnd: COMMAND_END,
   processName: PROCESS_NAME,
   onStart: COMMAND_START,
-  verbose: PRINT_OUTPUT,
+  verbose,
 } = args;
 
 if (!PROCESS_NAME) {
@@ -44,12 +44,14 @@ if (!COMMAND_START && !COMMAND_END) {
   process.exit(1);
 }
 
-module.exports = {
+const config = {
   COMMAND_END,
   COMMAND_START,
   MIN_CPU,
   PID,
-  PRINT_OUTPUT,
   PROCESS_NAME,
   USER,
+  VERBOSE: Boolean(verbose),
 };
+
+module.exports = { config };
