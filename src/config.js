@@ -1,5 +1,5 @@
 const commander = require("commander");
-const { name } = require("../package.json");
+const { name, version } = require("../package.json");
 
 const args = new commander.Command();
 
@@ -7,7 +7,7 @@ const float = val => parseFloat(val, 10);
 
 args
   .name(name)
-  .version("1.0.0")
+  .version(version)
   .option(
     "-c --min-cpu <minCpu>",
     "The minimum cpu % to consider the process active. E.g. 10.5 / Defaults to 0",
