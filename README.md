@@ -4,7 +4,7 @@ Watch a process on my Mac and execute a shell command when entering/exiting an a
 ![](https://i.ibb.co/1fKC1Dx/Screen-Shot-2019-07-24-at-12-25-18-PM.png)
 
 ```shell
-Usage: index [options]
+Usage: process-listener [options]
 
 Options:
   -V, --version                     output the version number
