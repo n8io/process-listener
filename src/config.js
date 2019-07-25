@@ -1,5 +1,5 @@
 const commander = require("commander");
-const { name } = require("./package.json");
+const { name } = require("../package.json");
 
 const args = new commander.Command();
 

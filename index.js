@@ -1,3 +1,3 @@
-const { start } = require("./watcher");
+const { start } = require("./src/watcher");
 
 start();
