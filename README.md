@@ -1,7 +1,8 @@
 # process-listener
+
 Watch a process on my Mac and execute a shell command when entering/exiting an active state
 
-![](https://i.ibb.co/1fKC1Dx/Screen-Shot-2019-07-24-at-12-25-18-PM.png)
+![output](https://i.ibb.co/1fKC1Dx/Screen-Shot-2019-07-24-at-12-25-18-PM.png)
 
 ```shell
 Usage: process-listener [options]
