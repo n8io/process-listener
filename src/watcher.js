@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const { multiply } = require("ramda");
 const psaux = require("psaux");
 const shell = require("shelljs");
@@ -33,10 +34,7 @@ const checkStatus = async process => {
       command: `~${PROCESS_NAME}`,
       user: USER,
     })
-    .filter(
-      ({ command, pid }) =>
-        Number(pid) !== PID && command.endsWith(PROCESS_NAME)
-    );
+    .filter(({ command, pid }) => Number(pid) !== PID);
 
   if (!processes.length) {
     const status = wasRunning ? Status.STOPPING : Status.NOT_RUNNING;
@@ -44,6 +42,31 @@ const checkStatus = async process => {
     wasRunning = false;
 
     return status;
+  }
+
+  if (processes.length > 1) {
+    const APP_KEY = " -psn_";
+    const names = processes.map(({ command, pid }) => `${pid}: ${command}`);
+    const recommendedProcesses = processes.filter(
+      ({ command }) => command.indexOf(APP_KEY) > -1
+    );
+    const recommendedProcess =
+      recommendedProcesses.length > 0 && recommendedProcesses[0];
+    const recommendedMessage = recommendedProcess
+      ? `\nWe suggest using the following: --process-name="${chalk.yellow(
+          recommendedProcess.command.split(APP_KEY)[0]
+        )}"`
+      : "";
+
+    console.error(`
+${chalk.red(
+  `Multiple processes were found with the given --process-name "${PROCESS_NAME}" . Please provide a more specific --process-name. Run again with the --verbose option to show the list of processes found.`
+)}
+${recommendedMessage}`);
+
+    log(`\n\t${names.join("\n\t")}`);
+
+    return Status.NOT_RUNNING;
   }
 
   const status = wasRunning ? Status.RUNNING : Status.STARTING;
