@@ -12,7 +12,7 @@
     "pkg": "^4.4.0",
     "psaux": "^0.4.0",
     "ramda": "^0.26.1",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.5"
   },
   "scripts": {
     "readme": "yarn -s build && process-listener --help",
